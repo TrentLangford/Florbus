@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Obstacle
   - Planet
+  - O2
+  - Fuel
   layers:
   - Default
   - TransparentFX
