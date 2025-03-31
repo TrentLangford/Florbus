@@ -8,10 +8,12 @@ public class TimerScript : MonoBehaviour
     public float time = 100f;
     public int oxygenLevel = 100;
     float fuelLevel;
+    public bool EqStatus;
 
     GameObject timer;
     GameObject oxygen;
     GameObject fuel;
+    GameObject status;
     public GameObject florbus;
     Player player;
 
@@ -30,7 +32,10 @@ public class TimerScript : MonoBehaviour
         timer = GameObject.Find("Time");
         oxygen = GameObject.Find("O2");
         fuel = GameObject.Find("Fuel");
-       
+        status = GameObject.Find("Status");
+
+        InvokeRepeating("Earthquake", 10.0f, 30.0f);
+        InvokeRepeating("EarthquakeStop", 15.0f, 30.0f);
 
     }
 
@@ -52,6 +57,20 @@ public class TimerScript : MonoBehaviour
 
         ftext.text = "Fuel: " + fuelLevel.ToString() + "%";
 
+        TMPro.TextMeshProUGUI etext = status.GetComponent<TMPro.TextMeshProUGUI>();
+        
+
+
+        if (EqStatus == true)
+        {
+            etext.text = "Planet Status: Danger";
+        }
+
+        if(EqStatus == false)
+        {
+            etext.text = "Planet Status: Normal";
+        }
+
 
 
         if (oxygenLevel == 0)
@@ -68,6 +87,16 @@ public class TimerScript : MonoBehaviour
             //winnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
         }
 
+    }
+
+    void Earthquake()
+    {
+        EqStatus = true;
+    }
+
+    void EarthquakeStop()
+    {
+        EqStatus = false;
     }
     
 }
