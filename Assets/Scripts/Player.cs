@@ -6,12 +6,14 @@ public class Player : MonoBehaviour
 {
     // Planet movement
     public GameObject planetObject;
+    private Planet planet;
     public float RotationSpeed = 5.0f;
 
     // Jump bounds
     public float JumpMaxHeight = 3f;
     Vector3 maxHeightVector;
     public float NormalHeight = -16f;
+    public float Height;
 
     // Jumping/falling speeds
     public float JetpackSpeed = 3f;
@@ -20,19 +22,30 @@ public class Player : MonoBehaviour
     public float DefaultJumpSeconds = 10f;
     public float jumpSeconds;
     [SerializeField] bool jetpacking = false;
+
+    // Raycasting info
+    public LayerMask raycastIgnore;
+    public float snapPosDistance;
+    Ray downRay;
+    RaycastHit hitInfo;
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log("touching touching touching");
         if (collision.collider.CompareTag("Obstacle")) Debug.Log("owie owie owie");
-        if (collision.collider.CompareTag("Planet")) Debug.Log("touched base");
+        if (collision.collider.CompareTag("Planet"))
+        {
+            Debug.Log("touched base");
+        }
     }
 
     void Start()
     {
+        planet = planetObject.GetComponent<Planet>();
         // can be removed later
         if (FallSpeed == 0f) FallSpeed = JetpackSpeed * 2f;
         jumpSeconds = DefaultJumpSeconds;
         maxHeightVector = new Vector3(0f, 0f, NormalHeight - JumpMaxHeight);
+        downRay = new Ray(transform.position, transform.up);
     }
 
     void Update()
@@ -54,6 +67,19 @@ public class Player : MonoBehaviour
             jetpacking = true;
         }
         else jetpacking = false;
+
+        // Safeguard
+        if (Physics.Raycast(downRay, out hitInfo, planet.PlanetRadius + JumpMaxHeight, ~raycastIgnore))
+        {
+            // Destroy enemies if you float over them
+            if (hitInfo.collider.CompareTag("Obstacle") && jetpacking) Destroy(hitInfo.collider.gameObject);
+            if (hitInfo.collider.CompareTag("Planet"))
+            {
+                Height = hitInfo.point.z - 1f;
+            }
+        }
+
+        Debug.DrawRay(transform.position, transform.up * (planet.PlanetRadius + JumpMaxHeight), Color.green);
     }
 
     private void FixedUpdate()
@@ -66,7 +92,7 @@ public class Player : MonoBehaviour
             else transform.position = maxHeightVector;
             jumpSeconds -= Time.fixedDeltaTime;
         }
-        else if (transform.position.z + JetpackSpeed * Time.fixedDeltaTime < NormalHeight)
+        else if (transform.position.z + JetpackSpeed * Time.fixedDeltaTime < Height)
         {
             // Jetpack down for free
             transform.Translate(-transform.forward * FallSpeed * Time.fixedDeltaTime);
