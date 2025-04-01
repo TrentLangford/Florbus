@@ -8,6 +8,7 @@ TagManager:
   - Planet
   - O2
   - Fuel
+  - Lava
   layers:
   - Default
   - TransparentFX

@@ -6,7 +6,7 @@ public class TimerScript : MonoBehaviour
 {
     
     public float time = 100f;
-    public int oxygenLevel = 100;
+    public float oxygenLevel = 100;
     float fuelLevel;
     public bool EqStatus;
 
@@ -49,7 +49,7 @@ public class TimerScript : MonoBehaviour
 
         TMPro.TextMeshProUGUI otext = oxygen.GetComponent<TMPro.TextMeshProUGUI>();
 
-        otext.text = "Oxygen: " + oxygenLevel.ToString() + "%";
+        otext.text = "Oxygen: " + Mathf.Round(oxygenLevel).ToString() + "%";
 
         TMPro.TextMeshProUGUI ftext = fuel.GetComponent<TMPro.TextMeshProUGUI>();
 

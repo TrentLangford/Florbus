@@ -31,13 +31,13 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log("touching touching touching");
-        if (collision.collider.CompareTag("Obstacle")) Debug.Log("owie owie owie");
+        /*if (collision.collider.CompareTag("Obstacle")) Debug.Log("owie owie owie");
         if (collision.collider.CompareTag("Planet"))
         {
             Debug.Log("touched base");
-        }
+        }*/
     }
-
+    Vector3 pos;
     void Start()
     {
         planet = planetObject.GetComponent<Planet>();
@@ -45,7 +45,9 @@ public class Player : MonoBehaviour
         if (FallSpeed == 0f) FallSpeed = JetpackSpeed * 2f;
         jumpSeconds = DefaultJumpSeconds;
         maxHeightVector = new Vector3(0f, 0f, NormalHeight - JumpMaxHeight);
-        downRay = new Ray(transform.position, transform.up);
+        pos = transform.position;
+        pos.z -= 1f;
+        downRay = new Ray(pos, transform.up);
     }
 
     void Update()
@@ -75,11 +77,17 @@ public class Player : MonoBehaviour
             if (hitInfo.collider.CompareTag("Obstacle") && jetpacking) Destroy(hitInfo.collider.gameObject);
             if (hitInfo.collider.CompareTag("Planet"))
             {
-                Height = hitInfo.point.z - 1f;
+                Height = hitInfo.point.z - 1.5f;
             }
         }
 
-        Debug.DrawRay(transform.position, transform.up * (planet.PlanetRadius + JumpMaxHeight), Color.green);
+        Debug.DrawRay(pos, transform.up * (planet.PlanetRadius + JumpMaxHeight), Color.green);
+
+        // Snap to ground
+        if (transform.position.z > Height)
+        {
+            transform.Translate(transform.forward * (transform.position.z - Height));
+        }
     }
 
     private void FixedUpdate()

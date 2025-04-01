@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MeteorSpawner : MonoBehaviour
 {
-    public GameObject Meteor;
+    public GameObject[] Meteors;
     public GameObject HitPoint;
     public Planet planet;
     public float TimeBetweenSpawns;
@@ -34,7 +34,7 @@ public class MeteorSpawner : MonoBehaviour
         hitPos.transform.parent = transform;
         hitPos.transform.position = dir * planet.PlanetRadius;
 
-        GameObject prefab = Instantiate(Meteor);
+        GameObject prefab = Instantiate(Meteors[Random.Range(0, Meteors.Length)]);
         prefab.transform.parent = transform;
         prefab.transform.position = dir * SpawnDistance;
         prefab.transform.rotation = quat;
