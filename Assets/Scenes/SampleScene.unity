@@ -640,10 +640,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Meteors:
-  - {fileID: 2377146978830879660, guid: 94076a1ac523b9346a14ca2e991fb796, type: 3}
-  - {fileID: 4610740217456078709, guid: c7c6f4574113f6347bebefca81155562, type: 3}
-  - {fileID: 6316544825688705698, guid: 6b8db0163f2bb0749ae05d246c386c90, type: 3}
-  - {fileID: 5582046817614367668, guid: 4e606505dc3f97a41a3309fe24ee8abf, type: 3}
+  - {fileID: 3698169648454936844, guid: 94076a1ac523b9346a14ca2e991fb796, type: 3}
+  - {fileID: 5455576431627031719, guid: c7c6f4574113f6347bebefca81155562, type: 3}
+  - {fileID: 821156751643426746, guid: 6b8db0163f2bb0749ae05d246c386c90, type: 3}
+  - {fileID: 2287653762719055457, guid: 4e606505dc3f97a41a3309fe24ee8abf, type: 3}
   HitPoint: {fileID: 6753833105577647970, guid: 0354ef95911cb6148929156cd3bd89e6, type: 3}
   planet: {fileID: 546675593}
   TimeBetweenSpawns: 0.2
@@ -672,7 +672,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 546675588}
-  m_Mesh: {fileID: -7630892198992904530, guid: af132ee19dd58a345a6748f4db666e3c, type: 3}
+  m_Mesh: {fileID: -7630892198992904530, guid: be328de8e3c86f04386b287390e57e76, type: 3}
 --- !u!64 &546675597
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -694,7 +694,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: -7630892198992904530, guid: af132ee19dd58a345a6748f4db666e3c, type: 3}
+  m_Mesh: {fileID: -7630892198992904530, guid: be328de8e3c86f04386b287390e57e76, type: 3}
 --- !u!1 &590138861
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,6 +1363,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   snapPosDistance: 0
+  FlorbusModel: {fileID: 4216014013719843132}
 --- !u!54 &1306435507
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2134,7 +2135,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6402584943230771349}
-  m_Mesh: {fileID: -189816432449713134, guid: af132ee19dd58a345a6748f4db666e3c, type: 3}
+  m_Mesh: {fileID: -189816432449713134, guid: be328de8e3c86f04386b287390e57e76, type: 3}
 --- !u!33 &7979982769643852208
 MeshFilter:
   m_ObjectHideFlags: 0

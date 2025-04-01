@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TimerScript : MonoBehaviour
 {
@@ -75,11 +76,12 @@ public class TimerScript : MonoBehaviour
 
         if (oxygenLevel == 0)
         {
-            oxygenLevel = 100;
+            /*oxygenLevel = 100;
 
             time = 100f;
             
-            player.jumpSeconds = 10f;
+            player.jumpSeconds = 10f;*/
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         if (time == 0)

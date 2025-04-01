@@ -28,6 +28,11 @@ public class Player : MonoBehaviour
     public float snapPosDistance;
     Ray downRay;
     RaycastHit hitInfo;
+
+    // Visuals
+    public GameObject FlorbusModel;
+    Vector2 lookVector;
+    float lookAngle;
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log("touching touching touching");
@@ -88,6 +93,13 @@ public class Player : MonoBehaviour
         {
             transform.Translate(transform.forward * (transform.position.z - Height));
         }
+
+        // Provides look vector
+        lookVector = new Vector2(-input.x, input.y);
+        if (lookVector.magnitude == 0) lookAngle = 0;
+        else lookAngle = Mathf.Rad2Deg * Mathf.Atan2(lookVector.y, lookVector.x);
+
+        FlorbusModel.transform.eulerAngles = new Vector3(180, 0, lookAngle);
     }
 
     private void FixedUpdate()
