@@ -15,6 +15,7 @@ public class TimerScript : MonoBehaviour
     GameObject oxygen;
     GameObject fuel;
     GameObject status;
+    GameObject camHolder;
     public GameObject florbus;
     Player player;
 
@@ -37,6 +38,8 @@ public class TimerScript : MonoBehaviour
 
         InvokeRepeating("Earthquake", 10.0f, 30.0f);
         InvokeRepeating("EarthquakeStop", 15.0f, 30.0f);
+
+        camHolder = GameObject.Find("Camera Holder");
 
     }
 
@@ -74,7 +77,7 @@ public class TimerScript : MonoBehaviour
 
 
 
-        if (oxygenLevel == 0)
+        if (oxygenLevel <= 0)
         {
             /*oxygenLevel = 100;
 
@@ -94,6 +97,7 @@ public class TimerScript : MonoBehaviour
     void Earthquake()
     {
         EqStatus = true;
+        camHolder.GetComponent<CameraShake>().Shake(5f);
     }
 
     void EarthquakeStop()

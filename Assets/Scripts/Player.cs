@@ -41,6 +41,7 @@ public class Player : MonoBehaviour
         {
             Debug.Log("touched base");
         }*/
+        if (collision.collider.CompareTag("Lava")) Debug.Log("lava lava lava");
     }
     Vector3 pos;
     void Start()

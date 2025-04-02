@@ -25,7 +25,8 @@ public class Planet : MonoBehaviour
             GameObject prefab = Instantiate(SpawningPrefab);
             prefab.transform.parent = transform;
             prefab.transform.position = dir * (PlanetRadius + prefab.transform.localScale.y);
-            prefab.transform.rotation = quat;
+            Quaternion lookQuat = Quaternion.LookRotation(quat * Vector3.up, dir);
+            prefab.transform.rotation = lookQuat;
         }
 
         for (int i = 0; i < NumO2; i++)
